@@ -2,8 +2,12 @@ from django.db import models
 
 # Create your models here.
 
+class Field(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
 class Category(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    field = models.ForeignKey(Field, on_delete=models.CASCADE, default="unsepcified")
 
     class Meta:
         verbose_name_plural = "categories"
